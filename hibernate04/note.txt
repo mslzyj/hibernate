@@ -1,0 +1,15 @@
+1.使用Hibernate二级缓存的步骤：
+（1）加入二级缓存的jar包即配置文件
+（2）配置hibernate.cfg.xml（对类级别）
+    I   配置启动hibernate的二级缓存
+    II  配置hibernate二级缓存的chanpin
+    III 配置对那些类使用hibernate的二级缓存
+ （3）也可以在employee.bhm.xml文件中配置二级缓存：将<class-cache usage="read-write"/>
+          加到employee.bhm.xml文件中的class内。
+ （4）对集合级别缓存的配置：
+    <collection-cache usage="read-write" collection="com.hibernate.entities.Department.emps"/>
+       也可以在employee.bhm.xml文件中配置集合级别的二级缓存
+  （5）查询缓存：默认情况下，设置的缓存对HQL即QBC是无效的，可配置：
+    I 在hibernate.cfg.xml声明开启查询缓存
+    II 设置query.setCacheable(true);
+    III查询缓存依赖二级缓存
