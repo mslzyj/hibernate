@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-26 20:27:53 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.hibernate02">
+    <class name="News" table="NEWS" >
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="title" type="java.lang.String">
+            <column name="TITLE" />
+        </property>
+        <property name="author" type="java.lang.String">
+            <column name="AUTHOR" />
+        </property>
+        <property name="date" type="java.util.Date">
+            <column name="DATE" />
+        </property>
+        
+        <!-- 映射大文件  -->
+          <property name="content" type="clob"></property>
+          <property name="image" type="blob"></property>
+          
+        <!-- 映射大文件         
+                     如果要改变生成的属性的类型，可以用下面的方法 
+       <property name="content">
+		  <column name="CONTENT" sql-type="mediumtext"></column>
+	   </property>
+
+		<property name="image">
+		   <column name="IMAGE" sql-type="mediumblob"></column>
+		</property>-->
+    </class>
+</hibernate-mapping>

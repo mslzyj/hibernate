@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-27 20:28:26 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.hibernate.nto1.both">
+    <class name="Customer" table="CUSTOMERS">
+        <id name="customerId" type="java.lang.Integer">
+            <column name="CUSTOMER_ID" />
+            <generator class="native" />
+        </id>
+        <property name="customerName" type="java.lang.String">
+            <column name="CUSTOMER_NAME" />
+        </property>
+        
+        <!-- 映射一对多的集合属性 
+           1.set:映射set类型的属性，
+           2.table：set中的元素对应的记录放在哪一个数据表中，该值需要和多对一的多的那个表的名字一致
+           3.key：指定多的表中的外键列的名字
+           4.one-to-many class="Order"：指定映射类型即一对多
+           5.inverse="true"：true指定由多的一方委会关联关系，以减少update语句。
+           6.cascade="delete":设定级联删除<set name="orders" table="ORDERS" inverse="true" cascade="delete" >
+           7.cascade="delete-orphan":删除所有和当前对象接触关联关系的对象
+           8.cascade="save-update"：设置级联保存，只需要保存customer，就能将关联的order也保存
+           9.开发时不建议使用cascade属性，常用手工方式处理
+           10.order-by="ORDER_NAME DESC"表示在查询的时候对集合中的元素降序排序，其中使用的是表的是表的字段名，而不是类的持久化类名
+        -->
+        <set name="orders" table="ORDERS" inverse="true"  >
+           <key column="CUSTOMER_ID"></key>
+           <one-to-many class="Order"/>
+        </set>
+    </class>
+</hibernate-mapping>
