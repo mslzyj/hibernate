@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-28 15:13:54 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.n2n.Item" table="ITEMS">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAEM" />
+        </property>
+        
+        <set name="categories" table="CATEGORYS_ITEMS" inverse="true">
+          <key column="I_ID"></key>
+          <many-to-many class="com.hibernate.n2n.Category" column="C_ID"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

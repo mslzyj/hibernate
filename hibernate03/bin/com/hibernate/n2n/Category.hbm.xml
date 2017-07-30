@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-7-28 15:13:54 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.hibernate.n2n">
+    <class name="Category" table="CATEGORYS">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAEM" />
+        </property>
+        <!-- 指定中间表：
+           1.使用many-to-many指定多对多的关联关系
+           2.column="I_ID"：执行Set集合中的持久化类在中间表的外键列的名称
+        
+         -->
+        <set name="items" table="CATEGORYS_ITEMS" >
+            <key>
+                <column name="C_ID" />
+            </key>
+           <many-to-many class="Item" column="I_ID"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
